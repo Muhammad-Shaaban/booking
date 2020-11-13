@@ -1,0 +1,57 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+
+<section class="container">
+  <h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'all booking operations' | translate}}</h3>
+
+  <div class="row mt-5 mb-5">
+    <div class="col-md-4">
+      <label class="text-muted font-weight-bold text-capitalize">{{'filter booking' | translate}}</label>
+    </div>
+    <div class="col-md-8">
+      <select class="form-control" (change)="getBookingFiltered($event)">
+        <option selected disabled class="font-weight-bold text-muted">{{'Choose' | translate}}...</option>
+        <option value="-1">{{'Denied' | translate}}</option>
+        <option value="0">{{'Not Seen' | translate}}</option>
+        <option value="1">{{'Accepted' | translate}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of allBookingInfo">
+      <div class="card" style="width: 22rem;margin: 5px auto;">
+        <div class="card-body">
+          <!--<h5 class="card-title">{{ item.AD._id }}</h5>-->
+          <p class="card-text">
+            <span class="text-muted">{{'Date' | translate}} : <span class="font-weight-bold">{{ item.RequestData.StartDate | date }} to {{ item.RequestData.EndDate | date }}</span></span><br><br>
+            <span class="text-muted">{{'From (Customer)' | translate}} : <span class="font-weight-bold"><a routerLink="/singleUser/customer/{{item.from._id}}">{{ item.from.name }}</a></span></span><br><br>
+            <span class="text-muted">{{'To (Trader)' | translate}} : <span class="font-weight-bold"><a routerLink="/singleUser/trader/{{item.to._id}}">{{ item.to.name }}</a></span></span><br><br>
+            <span class="text-muted">{{'Total Price' | translate}} : <span class="font-weight-bold">{{ item.RequestData.finalPrice }}</span></span>
+          </p>
+          <button type="button" class="btn btn-primary font-weight-bold" (click)="getSingleBooking(item._id)">{{'More details' | translate}}</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+   <!--Pagination-->
+   <ul class="pagination justify-content-center mt-4">
+    <li class="page-item">
+      <button class="page-link" (click) = "goPrev()" [disabled]="service.bookingOperationNumber <= 1">{{'Previous' | translate}}</button>
+    </li>
+
+    <li class="page-item" *ngFor="let page of paginationGenerate(totalPages)">
+      <button class="page-link" (click)="getNextPage(page)">{{ page }}</button>
+    </li>
+
+    <li class="page-item" *ngIf="showNextandPrev">
+      <span class="page-link">...</span>
+    </li>
+
+    <li class="page-item">
+      <button class="page-link" (click)="goNext()" [disabled]="service.bookingOperationNumber >= totalPages">{{'Next' | translate}}</button>
+    </li>
+  </ul>

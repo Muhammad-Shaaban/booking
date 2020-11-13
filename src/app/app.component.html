@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2c3e50;">
+  <a class="navbar-brand" style="color: #fff;" routerLink="/main">{{'Admin' | translate}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/Users/customers">{{'Users' | translate}} <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="width: 116px;" routerLink="/market/categories/allCategory">{{'Market' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/shop/products/all-products">{{'Shop' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/support/support-messages">{{'Support' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/bookingOperations/allBooking">{{'Booking' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/policy/all-policy">{{'Policy' | translate}}</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav justify-content-end" style="margin-right: 4%;" *ngIf="token">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{'User' | translate}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" (click)="logout()" style="cursor: pointer;">{{'Logout' | translate}}</button>
+          <button class="dropdown-item" (click)="regiter()" style="cursor: pointer;">{{'Register' | translate}}</button>
+        </div>
+
+      </li>
+    </ul>
+
+     <!-- Multi languages -->
+     <ul class="navbar-nav ml-auto" style="margin-left: 0 !important;margin-right: 2%;" *ngIf="token">
+      <li class="navbar-item dropdown">
+          <a href="" class="nav-link " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-globe text-white"></i>
+          </a>
+          <div class="dropdown-menu" style="min-width: 2rem !important;" aria-labelledby="navbarDropdown">
+              <button class="dropdown-item" style="cursor: pointer;" (click)="switchLang('en')">EN</button>
+              <button class="dropdown-item" style="cursor: pointer;" (click)="switchLang('ar')">AR</button>
+          </div>
+      </li>
+  </ul>
+
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

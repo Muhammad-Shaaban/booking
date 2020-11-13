@@ -1,0 +1,68 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<h3 class="mt-5 mb-5 text-muted text-center font-weight-bold">{{'Single Customer Information' | translate}}</h3>
+
+<div class="row">
+  <div class="col-md-12 ml-auto">
+    <button type="button" class="btn btn-primary btn-block w-25 ml-auto mb-4" (click)="sendNotification('Customer')"><i class="fas fa-bell"></i> {{'Send Notification' | translate}}</button>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <th>{{'Name' | translate}}</th>
+    <th>{{'Email' | translate}}</th>
+    <th>{{'Phone' | translate}}</th>
+    <th>{{'Image' | translate}}</th>
+    <th>{{'Email Verified' | translate}}</th>
+    <th>{{'Phone Verified' | translate}}</th>
+    <th>{{'Blocking' | translate}}</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ customerInfo.name }}</td>
+      <td>{{ customerInfo.email }}</td>
+      <td>{{ customerInfo.mobile }}</td>
+      <td>
+        <img src="https://api.mmbuae.com/images/{{ customerInfo.photo }}" class="img-thumbnail" width="100" height="100" alt="">
+      </td>
+      <td>
+        <i class="fas fa-check text-success" *ngIf="customerInfo.emailVerfied"></i>
+        <i class="fas fa-times text-danger" *ngIf="customerInfo.emailVerfied === false"></i>
+      </td>
+      <td>
+        <i class="fas fa-check text-success" *ngIf="customerInfo.mobileVerfied"></i>
+        <i class="fas fa-times text-danger" *ngIf="customerInfo.mobileVerfied === false"></i>
+      </td>
+      <td>
+        <button type="button" class="btn btn-success font-weight-bold" *ngIf="customerInfo.blocked === false" (click)="blockUnBlock(customerInfo._id, true)">{{'Block' | translate}}</button>
+        <button type="button" class="btn btn-danger font-weight-bold" *ngIf="customerInfo.blocked" (click)="blockUnBlock(customerInfo._id, false)">{{'UnBlock' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Start Orders Info -->
+<h3 class="text-muted pb-4">{{'Orders' | translate}}</h3>
+<div class="row">
+  <div class="col-md-4 mb-5" *ngFor="let item of customerInfo.Orders">
+    <div class="card" style="width: 22rem;margin: 0 auto;">
+      <div class="card-body">
+        <span class="mb-3 pb-3 border-bottom">{{'Order ID' | translate}} : <span class="ml-3 text-muted font-weight-bold">{{ item._id}}</span></span>
+        <div class="row mt-4 border p-2" *ngFor="let item2 of item.cart">
+          <div class="col-md-12">{{'Product' | translate}} : {{ item2.product }}</div>
+          <div class="col-md-12 border-bottom mb-3">{{'Count' | translate}} : {{ item2.numberNeeded }}</div>
+        </div>
+        <div class="paymnet border p-2 mt-3">
+          <span class="text-muted font-weight-bold">{{'Payment Information' | translate}}</span><br>
+          <span>{{'Payment Method' | translate}} : {{ item.payment.methodOfPay }}</span><br>
+          <span>{{'Total Price' | translate}} : {{ item.payment.totalMoney }}</span><br>
+          <span>{{'Discount' | translate}} : {{ item.payment.descPerc }}</span><br>
+          <span class="text-muted font-weight-bold">{{'Final Price' | translate}} : {{ item.payment.finalPrice }}</span><br>
+        </div>
+      </div>
+      <div class="address border p-2 mt-3"><span class="text-muted font-weight-bold">{{'Address' | translate}} :</span> {{ item.address }}</div>
+      <div class="date border p-2 mt-3"><span class="text-muted font-weight-bold">{{'Time' | translate}} :</span> {{ item.createdAt | date }}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<div class="container">
+
+  <div class="row mt-3 mb-2">
+    <div class="col-md-10">
+      <form #form="ngForm" style="width: 80%;margin: 0 auto;">
+        <input type="search" class="form-control" placeholder="Search" [(ngModel)]="userService.userSearch" name="shopSearch" #shopSearch="ngModel" required>
+      </form>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary" [disabled]="!shopSearch.valid" (click)="searchUser()">{{'Search' | translate}}</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="text-left text-muted mt-4 mb-3">{{'Total Numbers of Customers' | translate}} : <span class="font-weight-bold" style="font-size: 25px;">{{ totalCustomer }}</span></h5>
+    </div>
+    <div class="col-md-6 ml-auto mt-3">
+      <button type="button" class="btn btn-primary btn-block w-75 ml-auto" (click)="sendNotification('allCustomer')"><i class="fas fa-bell"></i> {{'Send Notification to All Customers' | translate}}</button>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <th>{{'Name' | translate}}</th>
+      <th>{{'Email' | translate}}</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allCustomerUser" style="cursor: pointer;" (click)="getSingleCustomer(item.Id)">
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

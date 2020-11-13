@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="wrapped-div">
+    <div class="tab-header">
+
+      <div class="row">
+        <div class="col-md-12">
+          <!--<h2 routerLink='/support/fq' routerLinkActive="active">FQ</h2>-->
+          <h2 routerLink='/shop/products/all-products' routerLinkActive="active">{{'Products' | translate}}</h2>
+          <h2 routerLink='/shop/cities/all-citites' routerLinkActive="active">{{'Cities' | translate}}</h2>
+          <h2 routerLink='/shop/promos/all-promos' routerLinkActive="active">{{'Promos' | translate}}</h2>
+          <h2 routerLink='/shop/categories' routerLinkActive="active">{{'Category' | translate}}</h2>
+          <h2 routerLink='/shop/orders/all-orders' routerLinkActive="active">{{'Orders' | translate}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

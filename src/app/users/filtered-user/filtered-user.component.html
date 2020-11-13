@@ -1,0 +1,57 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-10">
+    <form #form="ngForm" style="width: 80%;margin: 0 auto;">
+      <input type="search" class="form-control" placeholder="Search" [(ngModel)]="service.userSearch" name="shopSearch" #shopSearch="ngModel" required>
+    </form>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-primary" [disabled]="!shopSearch.valid" (click)="searchUser()">{{'Search' | translate}}</button>
+  </div>
+</div>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name' | translate}}</th>
+      <th>{{'Email' | translate}}</th>
+      <th>{{'Photo' | translate}}</th>
+      <th>{{'Status' | translate}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filteredUser">
+      <td>{{ item.name }}</td>
+      <td>{{ item.email }}</td>
+      <td>
+         <img src="https://api.mmbuae.com/images/{{ item.photo }}" class="img-thumbnail" width="150" height="150">
+      </td>
+      <td>{{ item.status }}</td>
+      <th>
+        <button type="button" class="btn btn-primary font-weight-bold text-capitalize" (click)="getMoreDetails(item._id, item.status)">{{'details' | translate}}</button>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<!--Pagination-->
+<ul class="pagination justify-content-center">
+  <li class="page-item">
+    <button class="page-link" (click) = "goPrev()" [disabled]="service.pageNumberUser <= 1">{{'Previous' | translate}}</button>
+  </li>
+
+  <li class="page-item" *ngFor="let page of paginationGenerate(totalPages)">
+    <button class="page-link" (click)="getNextPage(page)">{{ page }}</button>
+  </li>
+
+  <li class="page-item" *ngIf="showNextandPrev">
+    <span class="page-link">...</span>
+  </li>
+
+  <li class="page-item">
+    <button class="page-link" (click)="goNext()" [disabled]="service.pageNumberUser >= totalPages">{{'Next' | translate}}</button>
+  </li>
+</ul>

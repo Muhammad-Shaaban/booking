@@ -1,0 +1,108 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<section class="container">
+  <h2 class="mt-5 mb-4 text-center font-weight-bold text-muted border-bottom pb-3">{{'Dashboard' | translate}}</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+           <i class="fas fa-users mr-5" style="font-size: 60px"></i>
+           <span>{{'Users' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalUsers }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+            <i class="fas fa-user-friends mr-5" style="font-size: 60px"></i>
+           <span>{{'Customers' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalCustomer }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+            <i class="fas fa-user-tie mr-5" style="font-size: 60px"></i>
+           <span>{{'Traders' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalTraders }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fas fa-shopping-cart mr-5" style="font-size: 60px"></i>
+           <span>{{'Shop Category' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalShop }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fas fa-store mr-5" style="font-size: 60px"></i>
+           <span>{{'Prodcuts' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalProducts }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fab fa-adversal mr-5" style="font-size: 60px"></i>
+           <span>{{'Ads' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalAds }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fas fa-dollar-sign mr-5" style="font-size: 60px"></i>
+           <span>{{'Incomes' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ incomes }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fas fa-money-check-alt mr-5" style="font-size: 60px"></i>
+           <span>{{'Total Rented' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totlaRented }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fas fa-money-check-alt mr-5" style="font-size: 60px"></i>
+           <span>{{'Rented Today' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalRentedToday }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dashboard-content">
+        <p class="text-center font-weight-bold" style="font-size: 25px;">
+          <i class="fas fa-shopping-cart mr-5" style="font-size: 60px"></i>
+           <span>{{'Sold Products' | translate}}</span>
+        </p>
+        <p class="text-center font-weight-bold mt-5" style="font-size: 25px;">{{ totalSoldProds }}</p>
+      </div>
+    </div>
+
+
+  </div>
+</section>

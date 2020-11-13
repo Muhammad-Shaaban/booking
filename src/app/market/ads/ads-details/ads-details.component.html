@@ -1,0 +1,116 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-4">{{'more details'| translate}}</h3>
+
+<div class="row border p-3 mb-3">
+  <div class="col">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Ads ID' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails._id }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Ads Title' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.title }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Address' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.streetAdress }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'City' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.city }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Country' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.country }}</span>
+      </div>
+    </div>
+    <div class="row  mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Price' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.price }}</span>
+      </div>
+    </div>
+    <div class="row  mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Number of Rooms' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.NumOfRooms }}</span>
+      </div>
+    </div>
+    <div class="row  mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Bed(s)' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.beds }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Beach' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>
+          <i class="fas fa-check" style="color: #1ABC9C;" *ngIf="adsDetails.beds"></i>
+          <i class="fas fa-times text-danger" *ngIf="adsDetails.beds == false"></i>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Details' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.details }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Stars' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ adsDetails.star }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Services' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6" *ngFor="let item of adsDetails.services">
+            <ul class="list-group">
+              <li class="list-group-item active" style="font-style: 14px;">{{'Service ID' | translate}} : {{ item._id }}</li>
+              <li class="list-group-item text-muted">{{'Name (EN)' | translate}} : <span class="font-weight-bold">{{ item.serviceType.name }}</span></li>
+              <li class="list-group-item text-muted">{{'Name (Ar)' | translate}} : <span class="font-weight-bold">{{ item.serviceType.arb_name }}</span></li>
+              <li class="list-group-item text-muted">{{'Price' | translate}} : <span class="font-weight-bold">{{ item.price }}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

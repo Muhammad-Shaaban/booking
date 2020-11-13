@@ -1,0 +1,88 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-2">{{'all ads' | translate}}</h3>
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary font-weight-bold" (click)="goToRequestedAds()">{{'Requested Ads' | translate}}</button>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of allAds" >
+      <div class="service-info mt-5 mb-4">
+        <div class="card" style="width: 18rem;" style="margin: 0 auto;">
+          <div id="carouselExampleInterval_{{ item._id }}" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-interval="10000">
+                <img src="https://bookingbackendv1.herokuapp.com/images/{{ item.images[0] }}" height="350" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="10000" *ngFor="let imgDetail of item.images">
+                <img src="https://bookingbackendv1.herokuapp.com/images/{{ imgDetail }}" height="350" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleInterval_{{ item._id }}" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleInterval_{{ item._id }}" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">
+              <span class="text-muted">{{'Street Adress' | translate}} : <span class="font-weight-bold">{{ item.streetAdress }}</span></span><br>
+              <span class="text-muted">{{'City' | translate}} :  <span class="font-weight-bold">{{ item.city }}</span></span><br>
+              <span class="text-muted">{{'Price' | translate}} :  <span class="font-weight-bold">{{ item.price }}</span></span><br>
+            </p><hr class="mb-3">
+
+            <!--<div class="row mb-3" *ngFor="let item2 of item.services">
+              <div class="col-md-7">
+                <span class="text-muted">Name : <span class="font-weight-bold">{{ item2.serviceType.name }}</span></span><br>
+                <span class="text-muted">Price : <span class="font-weight-bold">{{ item2.price }}</span></span>
+              </div>
+              <div class="col-md-5">
+                <img src="https://api.mmbuae.com/images/{{ item2.serviceType.image }}" width="100" height="100" class="img-thumbnail">
+              </div>
+            </div>-->
+
+            <div class="row">
+              <div class="col mb-3">
+                <a class="btn btn-primary" routerLink="/market/ads/ads-details/{{ item._id }}">{{'More Details' | translate}}</a>
+              </div>
+              <div class="col  mb-3">
+                <button type="button" class="btn btn-info font-weight-bold" (click)="setTopView(item._id)">{{'Set as Top View' | translate}}</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-danger font-weight-bold" (click)="deleteADS(item._id)">{{'Delete' | translate}}</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+   <!--Pagination-->
+ <ul class="pagination justify-content-center">
+  <li class="page-item">
+    <button class="page-link" (click) = "goPrev()" [disabled]="service.allAdsPageNum <= 1">{{'Previous' | translate}}</button>
+  </li>
+
+  <li class="page-item" *ngFor="let page of paginationGenerate(totalPages)">
+    <button class="page-link" (click)="getNextPage(page)">{{ page }}</button>
+  </li>
+
+  <li class="page-item" *ngIf="showNextandPrev">
+    <span class="page-link">...</span>
+  </li>
+
+  <li class="page-item">
+    <button class="page-link" (click)="goNext()" [disabled]="service.allAdsPageNum >= totalPages">{{'Next' | translate}}</button>
+  </li>
+</ul>

@@ -1,0 +1,29 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'all cities' | translate}}</h3>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name (EN)' | translate}}</th>
+      <th>{{'Name (AR)' | translate}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allCities">
+      <td>{{ item.name }}</td>
+      <td>{{ item.arb_name }}</td>
+      <td>
+        <button type="button" class="btn btn-danger font-weight-bold text-capitalize" (click)="deleteCity(item._id)">{{'delete' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary font-weight-bold mb-4" (click)="createCity()"><i class="fas fa-plus-square mr-2"></i>{{'Create City' | translate}}</button>
+  </div>
+</div>

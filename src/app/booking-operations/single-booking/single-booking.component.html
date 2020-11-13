@@ -1,0 +1,135 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+
+<section class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-12 p-3 border mb-5">
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Booking ID' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item._id }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Start Date' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item.RequestData.StartDate | date }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'End Date' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item.RequestData.EndDate | date }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Adult(s)' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item.RequestData.Adult }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Children(s)' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item.RequestData.children }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Services' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+         <div class="row">
+           <div class="col-md-4" *ngFor="let service of item.RequestData.services">
+            <ul class="list-group">
+              <li class="list-group-item active">ID : {{ service._id }}</li>
+              <li class="list-group-item text-muted">{{'Service type' | translate}}: <span class="font-weight-bold" style="font-size: 14px;">{{ service.serviceType }}</span></li>
+              <li class="list-group-item text-muted">{{'Number of services' | translate}} :  <span class="font-weight-bold">{{  service.numberWanted }}</span></li>
+              <li class="list-group-item text-muted">{{'Service Price' | translate}} : <span class="font-weight-bold">{{  service.numberWanted }}</span></li>
+            </ul>
+           </div>
+         </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Final Price' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item.RequestData.finalPrice }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Arival Time' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ item.RequestData.ArivalTime | date}}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'From (Customer)' | translate}}</label>
+        </div>
+        <div class="col-md-8 text-muted">
+          <a routerLink="/singleUser/customer/{{item.from._id}}" class="font-weight-bold">{{ item.from.name }}</a>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'To (Trader)' | translate}}</label>
+        </div>
+        <div class="col-md-8 text-muted">
+          <a routerLink="/singleUser/trader/{{item.to._id}}" class="font-weight-bold">{{ item.to.name }}</a>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Ads' | translate}}</label>
+        </div>
+        <div class="col-md-8 text-muted">
+          <div class="card" style="width: 18rem;">
+            <div id="carouselExampleInterval_{{ item.AD._id }}" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-interval="10000">
+                  <img src="https://api.mmbuae.com/images/{{ item.AD.images[0] }}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-interval="10000" *ngFor="let imgs of item.AD.images">
+                  <img src="https://api.mmbuae.com/images/{{ imgs }}" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleInterval_{{ item.AD._id }}" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleInterval_{{ item.AD._id }}" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <div class="card-body">
+              <h5 style="font-size: 16px;">{{ item.AD._id }}</h5>
+              <p class="card-text">
+                <span class="text-muted font-weight-bold">{{'Price' | translate}} : {{ item.AD.price }}</span><br>
+                <span class="text-muted font-weight-bold">{{'Star(s)' | translate}} : {{ item.AD.star }}</span><br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

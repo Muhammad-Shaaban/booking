@@ -1,0 +1,68 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'product info' | translate}}</h3>
+
+<div class="row">
+  <div class="col">
+
+    <div class="row mb-3 mt-5">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Product ID' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ prodInfo._id }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Product Name' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ prodInfo.title }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Product Price' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ prodInfo.price }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Product Avilabel' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <span>{{ prodInfo.avilableNumber }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label class="text-muted font-weight-bold mr-5">{{'Product Image(s)' | translate}}</label>
+      </div>
+      <div class="col-md-8">
+        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style="width: 250px;">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-interval="10000">
+              <img src="https://api.mmbuae.com/images/{{ prodInfo.images[0] }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item " data-interval="10000" *ngFor="let item of prodInfo.images">
+              <img src="https://api.mmbuae.com/images/{{ item }}" class="d-block w-100" alt="...">
+            </div>
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<h3 class="text-muted text-center text-capitalize mt-4 mb-3">{{'all suggestions' | translate}}</h3>
+<table class="table">
+  <thead class="thead-dark">
+    <th>{{'Name' | translate}}</th>
+    <th>{{'User Type' | translate}}</th>
+    <th>{{'Photo' | translate}}</th>
+    <th>{{'Suggest' | translate}}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allSuggest">
+      <td>{{ item.user.name }}</td>
+      <td>{{ item.user.status }}</td>
+      <td>
+        <img src="https://api.mmbuae.com/images/{{ item.user.photo }}" width="100" height="100" class="img-thumbnail">
+      </td>
+      <td>{{ item.suggest }}</td>
+    </tr>
+  </tbody>
+</table>

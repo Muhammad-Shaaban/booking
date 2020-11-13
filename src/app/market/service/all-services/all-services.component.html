@@ -1,0 +1,34 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'all services' | translate}}</h3>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name (EN)' | translate}}</th>
+      <th>{{'Name (AR)' | translate}}</th>
+      <th>{{'Image' | translate}}</th>
+      <th>{{'Action' | translate}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allServices">
+      <td>{{ item.name }}</td>
+      <td>{{ item.arb_name }}</td>
+      <td>
+        <img src="https://api.mmbuae.com/images/{{ item.iconUrl }}" width="100" height="100" class="img-thumbnail">
+      </td>
+      <td>
+        <button class="btn btn-success font-weight-bold" (click)="updateServcie(item.id)">{{'edit' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Create New Service -->
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary mt-4 mb-5" type="button" (click)="addNewService()"><i class="fas fa-plus-square mr-2"></i>{{'Create Service' | translate}}</button>
+  </div>
+</div>

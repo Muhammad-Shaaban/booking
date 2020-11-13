@@ -1,0 +1,9 @@
+.dashboard-content{
+  height: 230px;
+  width: 400px;
+  background-color: #0984e3;
+  color: #fff;
+  padding: 10px;
+  margin: 30px auto;
+  border-radius: 10px;
+}

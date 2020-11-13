@@ -1,0 +1,30 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'Create Product' | translate}}</h3>
+
+<form #form="ngForm" autocomplete="off" style="width: 80%;margin: 0 auto;" enctype="multipart/form-data" (submit)="createProdcut()">
+  <div class="form-group mb-5">
+    <input type="text" class="form-control" [(ngModel)]="formData.title" #title="ngModel" name="title" placeholder="{{'Product Name' | translate}}" required>
+  </div>
+  <div class="form-group mb-5">
+    <input type="text" class="form-control" [(ngModel)]="formData.avilableNum" #avilableNum="ngModel" name="avilableNum" placeholder="{{'Number of Product' | translate}}" required>
+  </div>
+  <div class="form-group mb-5">
+    <select class="form-control" [(ngModel)]="formData.CatigoryID" #CatigoryID="ngModel" name="CatigoryID" required>
+      <option disabled class="font-weight-bold">Choose Category</option>
+      <option *ngFor="let shopetCat of allShopCategory" [value]="shopetCat._id">{{ shopetCat.name }} ---  {{ shopetCat.arb_name }}</option>
+    </select>
+  </div>
+  <div class="form-group mb-5">
+    <input type="text" class="form-control" [(ngModel)]="formData.price" #price="ngModel" name="price" placeholder="{{'Product Price' | translate}}" required>
+  </div>
+  <div class="form-group mb-5">
+    <input type="text" class="form-control" [(ngModel)]="formData.details" #details="ngModel" name="details" placeholder="{{'Prodcut Details' | translate}}" required>
+  </div>
+  <div class="form-group mb-5">
+    <input type="file" class="form-control" [(ngModel)]="formData.image" (change)="uploadFile($event)" #image="ngModel" name="image" required multiple>
+  </div>
+
+  <input type="submit" class="btn btn-primary mb-5" value="{{'Create' | translate}}" [disabled]="!form.valid">
+
+</form>

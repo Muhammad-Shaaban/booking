@@ -1,0 +1,31 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'all orders' | translate}}</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name' | translate}}</th>
+      <th>{{'Status' | translate}}</th>
+      <th>{{'Photo' | translate}}</th>
+      <th>{{'Deliver Status' | translate}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allOrders">
+      <td>{{ item.user.name }}</td>
+      <td>{{ item.user.status }}</td>
+      <td>
+        <img [src]="item.user.photo" class="img-thumbnail" width="150" height="150">
+      </td>
+      <td>
+        <span *ngIf="item.delivaryStatus" class="btn-success p-2 font-weight-bold">{{'Delivered' | translate}}</span>
+        <span *ngIf="item.delivaryStatus == false" class="btn btn-danger p-2 font-weight-bold" (click)="setToDeliver(item.id)">{{'Not Delivered' | translate}}</span>
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary font-weight-bold text-capitalize" (click)="getSingleOrder(item.id)">{{'more details' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,96 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<h3 class="mt-5 mb-5 text-muted text-center font-weight-bold">{{'Single Trader Information' | translate}}</h3>
+
+<div class="row">
+  <div class="col-md-12 ml-auto">
+    <button type="button" class="btn btn-primary btn-block w-25 ml-auto mb-4" (click)="sendNotification('Trader')"><i class="fas fa-bell"></i> {{'Send Notification' | translate}}</button>
+  </div>
+</div>
+
+
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <th>{{'Name' | translate}}</th>
+    <th>{{'Email' | translate}}</th>
+    <th>{{'Phone' | translate}}</th>
+    <th>{{'Total Income' | translate}}</th>
+    <th>{{'Image' | translate}}</th>
+    <th>{{'Email Verified' | translate}}</th>
+    <th>{{'Phone Verified' | translate}}</th>
+    <th>{{'Blocking' | translate}}</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ traderInfo.name }}</td>
+      <td>{{ traderInfo.email }}</td>
+      <td>{{ traderInfo.mobile }}</td>
+      <td>{{ traderInfo.income.total }}</td>
+      <td>
+        <img src="https://api.mmbuae.com/images/{{ traderInfo.photo }}" class="img-thumbnail" width="100" height="100" alt="">
+      </td>
+      <td>
+        <i class="fas fa-check text-success" *ngIf="traderInfo.emailVerfied"></i>
+        <i class="fas fa-times text-danger" *ngIf="traderInfo.emailVerfied === false"></i>
+      </td>
+      <td>
+        <i class="fas fa-check text-success" *ngIf="traderInfo.mobileVerfied"></i>
+        <i class="fas fa-times text-danger" *ngIf="traderInfo.mobileVerfied === false"></i>
+      </td>
+      <td>
+        <button type="button" class="btn btn-success font-weight-bold" *ngIf="traderInfo.blocked === false" (click)="blockUnBlock(traderInfo._id, true)">{{'Block' | translate}}</button>
+        <button type="button" class="btn btn-danger font-weight-bold" *ngIf="traderInfo.blocked" (click)="blockUnBlock(traderInfo._id, false)">{{'UnBlock' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Start Ads Info -->
+<div class="row">
+  <div class="col-md-4 mb-5" *ngFor="let item of traderInfo.MyWonAds">
+    <div class="card" style="width: 18rem;margin: 0 auto;">
+      <div class="card-img-top">
+        <div id="carouselExampleControls_{{ item._id }}" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img src="https://api.mmbuae.com/images/{{ item.images[0] }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" *ngFor="let item2 of item.images">
+              <img src="https://api.mmbuae.com/images/{{ item2 }}" class="d-block w-100" alt="...">
+            </div>
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls_{{ item._id }}" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls_{{ item._id }}" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title text-capitalize font-weight-bold mb-3">{{ item.title }}</h5>
+        <span class="mt-3 mb-2 text-muted font-weight-bold d-block" style="font-size: 20px;">{{'Services' | translate}}</span>
+        <div class="card-text border-bottom pb-3 mt-3" *ngFor="let item3 of item.services">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="https://api.mmbuae.com/images/{{ item3.serviceType.image }}" class="img-thumbnail" width="100" height="100">
+            </div>
+            <div class="col-md-8 text-muted mt-2">
+              <span class="mb-3">Name (EN) : {{item3.serviceType.name}}</span><br>
+              <span>Name (AR) : {{ item3.serviceType.arb_name }}</span>
+            </div>
+          </div>
+          <p class="mt-4"><span class="font-weight-bold text-muted">{{'Details' | translate}} :</span> {{ item.details }}</p>
+        </div>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

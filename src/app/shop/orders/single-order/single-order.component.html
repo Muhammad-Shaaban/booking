@@ -1,0 +1,157 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'order more details' | translate}}</h3>
+
+<div class="row">
+  <div class="col-md-12 p-3">
+
+    <!-- -->
+    <div class="col">
+      <!--  User Info -->
+      <h4 class="text-center text-muted text-capitalize border-bottom pb-3">{{'User Information' | translate}}</h4>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Name' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>
+            <a class="font-weight-bold" routerLink="/singleUser/trader/{{ orderDetails.user._id }}" *ngIf="orderDetails.user.status === 'treder'">{{ orderDetails.user.name }}</a>
+            <a class="font-weight-bold" routerLink="/singleUser/customer/{{ orderDetails.user._id }}" *ngIf="orderDetails.user.status === 'customer'">{{ orderDetails.user.name }}</a>
+          </span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Email' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ orderDetails.user.email }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Status' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span class="text-capitalize">{{ orderDetails.user.status }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Photo' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <img src="{{ orderDetails.user.photo }}" class="img-thumbnail" width="200" height="200">
+        </div>
+      </div>
+
+       <!--  Payment Info  -->
+       <h4 class="text-center text-muted text-capitalize border-bottom pb-3 mt-5">{{'Payment Information' | translate}}</h4>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Discount' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ orderDetails.payment.descPerc }} %</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Payment Method' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span class="font-weight-bold text-capitalize">{{ orderDetails.payment.methodOfPay }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Total Money' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ orderDetails.payment.totalMoney }}</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Final Price' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>{{ orderDetails.payment.finalPrice }}</span>
+        </div>
+      </div>
+
+       <!--  Cart Info  -->
+       <h4 class="text-center text-muted text-capitalize border-bottom pb-3 mt-5">{{'Cart Information' | translate}}</h4>
+
+       <div class="row mb-3">
+        <div class="col-md-4" *ngFor="let item of orderDetails.cart">
+          <div class="card" style="width: 18rem;">
+            <div id="carouselExampleControls_{{item.product._id}}" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://api.mmbuae.com/images/{{ item.product.images[0] }}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" *ngFor="let img of item.product.images">
+                  <img src="https://api.mmbuae.com/images/{{ img }}" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls_{{item.product._id}}" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls_{{item.product._id}}" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.product.title}}</h5>
+              <p class="card-text">
+                <span class="text-muted">{{'Description' | translate}} :  <span class="font-weight-bold">{{ item.product.desc }}</span></span><br>
+                <span class="text-muted">{{'Price' | translate}} :  <span class="font-weight-bold">{{ item.product.price }}</span></span><br>
+              </p>
+              <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+      </div>
+
+       <!--  Address Info  -->
+       <h4 class="text-center text-muted text-capitalize border-bottom pb-3 mt-5">{{'Address Information' | translate}}</h4>
+
+       <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Address' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>
+            <a href="https://maps.google.com/?q={{ orderDetails.address.E }},{{ orderDetails.address.N }}" target="_blank">{{ orderDetails.address.title }}</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="text-muted font-weight-bold mr-5">{{'Deliver Status' | translate}}</label>
+        </div>
+        <div class="col-md-8">
+          <span>
+            <i class="fas fa-check" style="color: #1ABC9C;" *ngIf="orderDetails.delivaryStatus"></i>
+            <i class="fas fa-times text-danger" *ngIf="orderDetails.delivaryStatus == false"></i>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

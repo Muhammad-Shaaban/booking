@@ -1,0 +1,33 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'all promos' | translate}}</h3>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name' | translate}}</th>
+      <th>{{'Discount' | translate}}</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allPromos">
+      <td>{{ item.name }}</td>
+      <td>{{ item.descPercent }} <span class="font-weight-bold">%</span></td>
+      <td>
+        <button type="button" class="btn btn-primary font-weight-bold text-capitalize" (click)="editPromo(item._id)">{{'edit' | translate}}</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger font-weight-bold text-capitalize" (click)="deletePromo(item._id)">{{'delete' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary font-weight-bold mb-4" (click)="createPromo()"><i class="fas fa-plus-square mr-2"></i>{{'Create Promo' | translate}}</button>
+  </div>
+</div>

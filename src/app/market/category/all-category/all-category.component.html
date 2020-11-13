@@ -1,0 +1,29 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-center text-muted text-capitalize mt-3 mb-3">{{'all avilable category' | translate}}</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name (EN)' | translate}}</th>
+      <th>{{'Name (AR)' | translate}}</th>
+      <th>{{'Action' | translate}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allCategory">
+      <td>{{ item.name }}</td>
+      <td>{{ item.arb_name }}</td>
+      <td>
+        <button class="btn btn-success text-capitalize font-weight-bold" type="button" (click)="editCayegory(item.id)">{{'edit' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Create New Category -->
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary mt-4 mb-5" type="button" (click)="addNewCategory()"><i class="fas fa-plus-square mr-2"></i>{{'Create Category' | translate}}</button>
+  </div>
+</div>

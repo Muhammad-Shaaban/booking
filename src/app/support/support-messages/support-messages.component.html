@@ -1,0 +1,52 @@
+<div class="lds-default" *ngIf="showOrHide"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<h3 class="text-muted text-center text-capitalize mt-4 mb-3">{{'all support messages' | translate}}</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>{{'Name' | translate}}</th>
+      <th>{{'Email' | translate}}</th>
+      <th>{{'Photo' | translate}}</th>
+      <th>{{'Block' | translate}}</th>
+      <th>{{'Message' | translate}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allSupportMessage">
+      <td>{{ item.user.name }}</td>
+      <td>{{ item.user.email }}</td>
+      <td>
+        <img src="https://api.mmbuae.com/images/{{ item.user.photo }}" width="100" height="100" class="img-thumbnail">
+      </td>
+      <td>
+        <i class="fas fa-check" style="color: #1ABC9C;" *ngIf="item.user.blocked"></i>
+        <i class="fas fa-times text-danger" *ngIf="item.user.blocked == false"></i>
+      </td>
+      <td>{{ item.message }}</td>
+      <td>
+        <button type="button" class="btn btn-success font-weight-bold" (click)="answerMessage(item.ID)">{{'Answer' | translate}}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+ <!--Pagination-->
+ <ul class="pagination justify-content-center">
+  <li class="page-item">
+    <button class="page-link" (click) = "goPrev()" [disabled]="service.pageNumber <= 1">{{'Previous' | translate}}</button>
+  </li>
+
+  <li class="page-item" *ngFor="let page of paginationGenerate(totalPages)">
+    <button class="page-link" (click)="getNextPage(page)">{{ page }}</button>
+  </li>
+
+  <li class="page-item" *ngIf="showNextandPrev">
+    <span class="page-link">...</span>
+  </li>
+
+  <li class="page-item">
+    <button class="page-link" (click)="goNext()" [disabled]="service.pageNumber >= totalPages">{{'Next' | translate}}</button>
+  </li>
+</ul>

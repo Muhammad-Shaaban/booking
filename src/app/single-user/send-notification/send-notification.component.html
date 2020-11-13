@@ -1,0 +1,16 @@
+<h2 class="text-capitalize text-muted text-center mt-5">{{'send notification' | translate}}</h2><hr>
+<div class="row">
+  <div class="col">
+    <form #form="ngForm" autocomplete="off" style="width: 70%;margin: 0 auto; margin-top: 5%" (submit)="sendNotification()">
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="formData.title" #title="ngModel" name="title" placeholder="{{'Title of message' | translate}}" required>
+      </div>
+      <div class="form-group">
+        <textarea type="text" class="form-control" [(ngModel)]="formData.msg" #msg="ngModel" name="msg" placeholder="{{'Content' | translate}}" rows="8" required></textarea>
+      </div>
+
+      <input type="submit" class="btn btn-primary font-weight-bold" value="{{'Send' | translate}}" [disabled]="!form.valid">
+
+    </form>
+  </div>
+</div>
